@@ -11,12 +11,10 @@ interface PapriCoinRepository {
 
     suspend fun getCoinById(id: String): CoinDetailDto
 
-    suspend fun getCurrencyForCoinById(id: String): CoinCurrencyDto
-
     suspend fun getHistoricalCurrencyForPeriod(
         id: String,
-        start: Long,
-        end: Long
+        start: String,
+        end: String
     ): List<CoinCurrencyDto>
 
     suspend fun getOverview(): OverviewDto

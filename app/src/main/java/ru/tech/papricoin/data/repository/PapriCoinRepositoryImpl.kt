@@ -20,14 +20,10 @@ class PapriCoinRepositoryImpl @Inject constructor(
         return api.getCoinById(id)
     }
 
-    override suspend fun getCurrencyForCoinById(id: String): CoinCurrencyDto {
-        return api.getCurrencyForCoinById(id)
-    }
-
     override suspend fun getHistoricalCurrencyForPeriod(
         id: String,
-        start: Long,
-        end: Long
+        start: String,
+        end: String
     ): List<CoinCurrencyDto> {
         return api.getHistoricalCurrencyForPeriod(id, start, end)
     }

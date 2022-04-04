@@ -1,5 +1,7 @@
 package ru.tech.papricoin.presentation.coin_list.viewModel
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -22,6 +24,10 @@ class CoinListViewModel @Inject constructor(
     private val getOverviewUseCase: GetOverviewUseCase
 ) : ViewModel() {
 
+    @ExperimentalMaterial3Api
+    val scrollBehavior = mutableStateOf(TopAppBarDefaults.pinnedScrollBehavior())
+
+
     private val _coinListState = mutableStateOf<UIState<List<Coin>>>(UIState.Empty())
     val coinListState: State<UIState<List<Coin>>> = _coinListState
 
@@ -31,11 +37,15 @@ class CoinListViewModel @Inject constructor(
     private val _dialogState = mutableStateOf(false)
     val dialogState: State<Boolean> = _dialogState
 
+    private val _isRefreshing = mutableStateOf(false)
+    val isRefreshing: State<Boolean> = _isRefreshing
+
     init {
         reload()
     }
 
     private fun getOverview() {
+        _isRefreshing.value = true
         getOverviewUseCase().onEach { result ->
             when (result) {
                 is Action.Success -> {
@@ -65,6 +75,7 @@ class CoinListViewModel @Inject constructor(
                     _coinListState.value = UIState.Loading()
                 }
             }
+            _isRefreshing.value = false
         }.launchIn(viewModelScope)
     }
 

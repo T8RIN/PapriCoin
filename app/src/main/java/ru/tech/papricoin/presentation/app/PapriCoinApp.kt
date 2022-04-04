@@ -10,12 +10,11 @@ import ru.tech.papricoin.presentation.coin_detail.CoinDetailsScreen
 import ru.tech.papricoin.presentation.coin_list.CoinListScreen
 import ru.tech.papricoin.presentation.ui.theme.PapriCoinTheme
 import ru.tech.papricoin.presentation.utils.Screen
-import ru.tech.papricoin.presentation.utils.WindowSize
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api
 @Composable
-fun PapriCoinApp(windowSize: WindowSize) {
+fun PapriCoinApp() {
 
     PapriCoinTheme {
         val navController = rememberNavController()

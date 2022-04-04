@@ -95,8 +95,9 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.2.0-alpha06")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.24.2-alpha")
-    implementation("com.google.accompanist:accompanist-flowlayout:0.24.2-alpha")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.24.5-alpha")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.24.5-alpha")
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.24.5-alpha")
 
     //Coil
     implementation("io.coil-kt:coil:2.0.0-rc01")

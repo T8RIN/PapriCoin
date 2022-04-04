@@ -70,7 +70,11 @@ fun CoinDetailsScreen(
                 state.data?.let { details ->
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
-                        contentPadding = WindowInsets.systemBars.asPaddingValues()
+                        contentPadding = PaddingValues(
+                            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
+                            bottom = WindowInsets.navigationBars.asPaddingValues()
+                                .calculateTopPadding() + 100.dp
+                        )
                     ) {
                         item {
                             Column(modifier = Modifier.padding(horizontal = 10.dp)) {

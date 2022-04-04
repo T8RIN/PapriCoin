@@ -9,7 +9,6 @@ import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
 import ru.tech.papricoin.R
 import ru.tech.papricoin.presentation.app.PapriCoinApp
-import ru.tech.papricoin.presentation.utils.rememberWindowSizeClass
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api
@@ -21,9 +20,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val windowSize = rememberWindowSizeClass()
-
-            PapriCoinApp(windowSize = windowSize)
+            PapriCoinApp()
         }
     }
 }

@@ -1,5 +1,6 @@
 package ru.tech.papricoin.presentation.app
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -11,6 +12,7 @@ import ru.tech.papricoin.presentation.ui.theme.PapriCoinTheme
 import ru.tech.papricoin.presentation.utils.Screen
 import ru.tech.papricoin.presentation.utils.WindowSize
 
+@ExperimentalFoundationApi
 @ExperimentalMaterial3Api
 @Composable
 fun PapriCoinApp(windowSize: WindowSize) {

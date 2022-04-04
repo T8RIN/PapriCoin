@@ -21,7 +21,7 @@ import java.text.DecimalFormat
 fun Chart(lineChartData: List<Double>, color: Color) {
     val maxValue = lineChartData.maxOrNull() ?: 0.toDouble()
     val minValue = lineChartData.minOrNull() ?: 0.toDouble()
-    val currentValue = lineChartData.last()
+    val currentValue = lineChartData.lastOrNull() ?: 0.toDouble()
 
     val df = DecimalFormat("#.##").apply {
         roundingMode = RoundingMode.CEILING

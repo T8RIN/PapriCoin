@@ -39,4 +39,5 @@ val CoinDetailDto.coinDetail: CoinDetail
         message = message ?: "",
         tags = tags?.map { it.name } ?: emptyList(),
         team = team ?: emptyList(),
+        iconUrl = "https://static.coinpaprika.com/coin/$id/logo.png"
     )

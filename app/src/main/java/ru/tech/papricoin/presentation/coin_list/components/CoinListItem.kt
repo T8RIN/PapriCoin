@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.BrokenImage
+import androidx.compose.material.icons.outlined.MoneyOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -45,7 +45,7 @@ fun CoinListItem(modifier: Modifier = Modifier, coin: Coin, onClick: (String) ->
                     error = {
                         Icon(
                             modifier = Modifier.fillMaxSize(),
-                            imageVector = Icons.Outlined.BrokenImage,
+                            imageVector = Icons.Outlined.MoneyOff,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.onBackground
                         )
@@ -76,7 +76,7 @@ fun CoinListItem(modifier: Modifier = Modifier, coin: Coin, onClick: (String) ->
                 Spacer(modifier = Modifier.size(10.dp))
             }
             Spacer(modifier = Modifier.size(10.dp))
-            Divider(Modifier.fillMaxWidth())
+            Divider(Modifier.fillMaxWidth(), color = MaterialTheme.colorScheme.surfaceVariant)
         }
     }
 }

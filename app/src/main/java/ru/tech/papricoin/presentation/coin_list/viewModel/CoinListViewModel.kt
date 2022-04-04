@@ -15,6 +15,7 @@ import ru.tech.papricoin.presentation.utils.Action
 import ru.tech.papricoin.presentation.utils.UIState
 import javax.inject.Inject
 
+
 @HiltViewModel
 class CoinListViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase,
@@ -27,9 +28,11 @@ class CoinListViewModel @Inject constructor(
     private val _overviewState = mutableStateOf<UIState<Overview?>>(UIState.Empty())
     val overviewState: State<UIState<Overview?>> = _overviewState
 
+    private val _dialogState = mutableStateOf(false)
+    val dialogState: State<Boolean> = _dialogState
+
     init {
-        getOverview()
-        getCoins()
+        reload()
     }
 
     private fun getOverview() {
@@ -65,13 +68,24 @@ class CoinListViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    var currentList: List<Coin> = listOf()
+    private var currentList: List<Coin> = listOf()
+
     fun filterFor(query: String) {
         _coinListState.value = UIState.Success(
             if (query.trim().isNotEmpty()) currentList.filter {
-                it.name.lowercase().contains(query) or it.symbol.lowercase().contains(query)
+                it.name.lowercase().contains(query) or it.symbol.lowercase()
+                    .contains(query) or it.rank.toString().contains(query)
             } else currentList
         )
+    }
+
+    fun showDialog(value: Boolean) {
+        _dialogState.value = value
+    }
+
+    fun reload() {
+        getOverview()
+        getCoins()
     }
 
 }

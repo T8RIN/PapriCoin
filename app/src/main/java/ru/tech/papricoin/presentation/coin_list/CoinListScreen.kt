@@ -1,11 +1,17 @@
 package ru.tech.papricoin.presentation.coin_list
 
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ExitToApp
+import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,19 +27,39 @@ import ru.tech.papricoin.presentation.utils.UIState
 @ExperimentalMaterial3Api
 @Composable
 fun CoinListScreen(navController: NavController, viewModel: CoinListViewModel = hiltViewModel()) {
+
+    BackHandler { viewModel.showDialog(true) }
+
     Box(Modifier.fillMaxSize()) {
         when (val data = viewModel.coinListState.value) {
             is UIState.Empty<*> -> {
-                Text(
+                Column(
                     modifier = Modifier
                         .align(Alignment.Center)
                         .padding(10.dp),
-                    text = "Something went wrong\n${data.message ?: ""}",
-                    color = MaterialTheme.colorScheme.onBackground
-                )
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Something went wrong\n\n${data.message ?: ""}",
+                        color = MaterialTheme.colorScheme.onBackground,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(Modifier.height(36.dp))
+                    Button(onClick = { viewModel.reload() }) {
+                        Icon(Icons.Outlined.Refresh, null)
+                        Spacer(Modifier.width(24.dp))
+                        Text("Try again")
+                    }
+                }
             }
             is UIState.Success<List<Coin>> -> {
-                LazyColumn(contentPadding = WindowInsets.systemBars.asPaddingValues()) {
+                LazyColumn(
+                    contentPadding = PaddingValues(
+                        top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
+                        bottom = WindowInsets.navigationBars.asPaddingValues()
+                            .calculateTopPadding() + 100.dp
+                    )
+                ) {
                     item {
                         Row {
                             val overview = viewModel.overviewState.value
@@ -92,4 +118,37 @@ fun CoinListScreen(navController: NavController, viewModel: CoinListViewModel = 
             }
         }
     }
+
+    if (viewModel.dialogState.value) {
+        val ctx = LocalContext.current as ComponentActivity
+        AlertDialog(
+            onDismissRequest = { viewModel.showDialog(false) },
+            confirmButton = {
+                TextButton(onClick = { viewModel.showDialog(false) }) {
+                    Text("Stay")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    viewModel.showDialog(false)
+                    ctx.finishAffinity()
+                }) {
+                    Text("Close")
+                }
+            },
+            title = {
+                Text("App closing")
+            },
+            text = {
+                Text(
+                    "Are you really want to close PapriCoin application?",
+                    textAlign = TextAlign.Center
+                )
+            },
+            icon = {
+                Icon(Icons.Outlined.ExitToApp, null)
+            }
+        )
+    }
+
 }

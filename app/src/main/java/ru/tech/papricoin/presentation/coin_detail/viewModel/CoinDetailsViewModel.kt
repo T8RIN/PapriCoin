@@ -32,19 +32,13 @@ class CoinDetailsViewModel @Inject constructor(
     private val _currencyHistoryState = mutableStateOf<UIState<List<CoinCurrency>>>(UIState.Empty())
     val currencyHistoryState: State<UIState<List<CoinCurrency>>> = _currencyHistoryState
 
+    private var id = ""
+
 
     init {
         savedStateHandle.get<String>(COIN_ID_PARAM)?.let {
-            getCoin(it)
-            val timestamp = System.currentTimeMillis()
-            val month = 24L * 60 * 60 * 31 * 1000 * 11
-            val end = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
-                timestamp
-            )
-            val start = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
-                timestamp - month
-            )
-            getHistoricalCurrency(it, start, end)
+            id = it
+            reload(id)
         }
     }
 
@@ -78,6 +72,19 @@ class CoinDetailsViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun reload(it: String = id) {
+        getCoin(it)
+        val timestamp = System.currentTimeMillis()
+        val month = 24L * 60 * 60 * 31 * 1000 * 11
+        val end = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
+            timestamp
+        )
+        val start = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
+            timestamp - month
+        )
+        getHistoricalCurrency(it, start, end)
     }
 
 }

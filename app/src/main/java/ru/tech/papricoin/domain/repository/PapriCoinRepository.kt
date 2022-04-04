@@ -1,22 +1,24 @@
 package ru.tech.papricoin.domain.repository
 
-import ru.tech.papricoin.data.remote.dto.CoinCurrencyDto
-import ru.tech.papricoin.data.remote.dto.CoinDetailDto
-import ru.tech.papricoin.data.remote.dto.CoinDto
-import ru.tech.papricoin.data.remote.dto.OverviewDto
+import kotlinx.coroutines.flow.Flow
+import ru.tech.papricoin.domain.model.Coin
+import ru.tech.papricoin.domain.model.CoinCurrency
+import ru.tech.papricoin.domain.model.CoinDetail
+import ru.tech.papricoin.domain.model.Overview
+import ru.tech.papricoin.presentation.utils.Action
 
 interface PapriCoinRepository {
 
-    suspend fun getCoins(): List<CoinDto>
+    fun getCoins(): Flow<Action<List<Coin>>>
 
-    suspend fun getCoinById(id: String): CoinDetailDto
+    fun getCoinById(id: String): Flow<Action<CoinDetail>>
 
-    suspend fun getHistoricalCurrencyForPeriod(
+    fun getHistoricalCurrencyForPeriod(
         id: String,
         start: String,
         end: String
-    ): List<CoinCurrencyDto>
+    ): Flow<Action<List<CoinCurrency>>>
 
-    suspend fun getOverview(): OverviewDto
+    fun getOverview(): Flow<Action<Overview>>
 
 }

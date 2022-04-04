@@ -1,5 +1,7 @@
 package ru.tech.papricoin.data.remote.dto
 
+import ru.tech.papricoin.data.local.entity.CoinDetailEntity
+import ru.tech.papricoin.data.remote.response.*
 import ru.tech.papricoin.domain.model.CoinDetail
 
 data class CoinDetailDto(
@@ -40,4 +42,17 @@ val CoinDetailDto.coinDetail: CoinDetail
         tags = tags?.map { it.name } ?: emptyList(),
         team = team ?: emptyList(),
         iconUrl = "https://static.coinpaprika.com/coin/$id/logo.png"
+    )
+
+val CoinDetailDto.coinDetailEntity: CoinDetailEntity
+    get() = CoinDetailEntity(
+        id = id,
+        is_active = is_active,
+        name = name,
+        rank = rank,
+        symbol = symbol ?: "",
+        description = description ?: "",
+        message = message ?: "",
+        tags = tags?.map { it.name } ?: emptyList(),
+        team = team ?: emptyList(),
     )

@@ -1,6 +1,6 @@
 package ru.tech.papricoin.domain.model
 
-import ru.tech.papricoin.data.remote.dto.Team
+import ru.tech.papricoin.data.remote.response.Team
 
 data class CoinDetail(
     val description: String,

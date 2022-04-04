@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.unit.dp
-import ru.tech.papricoin.data.remote.dto.Team
+import ru.tech.papricoin.data.remote.response.Team
 
 
 @Composable

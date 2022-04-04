@@ -1,4 +1,4 @@
-package ru.tech.papricoin.data.remote.dto
+package ru.tech.papricoin.data.remote.response
 
 data class Tag(
     val coin_counter: Int,

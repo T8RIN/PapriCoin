@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import ru.tech.papricoin.common.constants.Constants.COIN_ID_PARAM
+import ru.tech.papricoin.core.constants.Constants.COIN_ID_PARAM
 import ru.tech.papricoin.domain.model.CoinCurrency
 import ru.tech.papricoin.domain.model.CoinDetail
 import ru.tech.papricoin.domain.use_case.favorite_coins.add_favorite_coin.AddFavoriteCoinUseCase
@@ -19,8 +19,8 @@ import ru.tech.papricoin.domain.use_case.favorite_coins.check_favorite_coin.Chec
 import ru.tech.papricoin.domain.use_case.favorite_coins.remove_favorite_coin.RemoveFavoriteCoinUseCase
 import ru.tech.papricoin.domain.use_case.get_coin.GetCoinUseCase
 import ru.tech.papricoin.domain.use_case.get_historical_currency.GetHistoricalCurrencyUseCase
-import ru.tech.papricoin.presentation.utils.Action
-import ru.tech.papricoin.presentation.utils.UIState
+import ru.tech.papricoin.presentation.ui.utils.Action
+import ru.tech.papricoin.presentation.ui.utils.UIState
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

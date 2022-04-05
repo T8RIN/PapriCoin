@@ -8,7 +8,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
 import ru.tech.papricoin.R
-import ru.tech.papricoin.presentation.app.PapriCoinApp
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api

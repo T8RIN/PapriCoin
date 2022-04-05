@@ -13,8 +13,8 @@ import ru.tech.papricoin.domain.model.Coin
 import ru.tech.papricoin.domain.model.Overview
 import ru.tech.papricoin.domain.use_case.get_coins.GetCoinsUseCase
 import ru.tech.papricoin.domain.use_case.get_overview.GetOverviewUseCase
-import ru.tech.papricoin.presentation.utils.Action
-import ru.tech.papricoin.presentation.utils.UIState
+import ru.tech.papricoin.presentation.ui.utils.Action
+import ru.tech.papricoin.presentation.ui.utils.UIState
 import javax.inject.Inject
 
 

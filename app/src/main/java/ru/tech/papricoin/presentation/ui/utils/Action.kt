@@ -1,4 +1,4 @@
-package ru.tech.papricoin.presentation.utils
+package ru.tech.papricoin.presentation.ui.utils
 
 sealed class Action<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T) : Action<T>(data)

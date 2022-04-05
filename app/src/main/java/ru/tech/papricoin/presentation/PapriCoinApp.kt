@@ -1,4 +1,4 @@
-package ru.tech.papricoin.presentation.app
+package ru.tech.papricoin.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,7 +10,7 @@ import ru.tech.papricoin.presentation.coin_detail.CoinDetailsScreen
 import ru.tech.papricoin.presentation.coin_list.CoinListScreen
 import ru.tech.papricoin.presentation.favorite_coins.FavoriteCoinsScreen
 import ru.tech.papricoin.presentation.ui.theme.PapriCoinTheme
-import ru.tech.papricoin.presentation.utils.Screen
+import ru.tech.papricoin.presentation.ui.utils.Screen
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api

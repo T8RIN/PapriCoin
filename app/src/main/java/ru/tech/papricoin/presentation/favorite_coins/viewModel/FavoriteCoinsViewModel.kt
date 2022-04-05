@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.tech.papricoin.domain.model.Coin
 import ru.tech.papricoin.domain.use_case.favorite_coins.get_favorite_coins.GetFavoriteCoinsUseCase
-import ru.tech.papricoin.presentation.utils.Action
-import ru.tech.papricoin.presentation.utils.UIState
+import ru.tech.papricoin.presentation.ui.utils.Action
+import ru.tech.papricoin.presentation.ui.utils.UIState
 import javax.inject.Inject
 
 @HiltViewModel

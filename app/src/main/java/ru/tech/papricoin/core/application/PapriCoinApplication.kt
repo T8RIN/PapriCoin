@@ -1,4 +1,4 @@
-package ru.tech.papricoin.common.application
+package ru.tech.papricoin.core.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -5,7 +5,7 @@ import ru.tech.papricoin.domain.model.Coin
 import ru.tech.papricoin.domain.model.CoinCurrency
 import ru.tech.papricoin.domain.model.CoinDetail
 import ru.tech.papricoin.domain.model.Overview
-import ru.tech.papricoin.presentation.utils.Action
+import ru.tech.papricoin.presentation.ui.utils.Action
 
 interface PapriCoinRepository {
 

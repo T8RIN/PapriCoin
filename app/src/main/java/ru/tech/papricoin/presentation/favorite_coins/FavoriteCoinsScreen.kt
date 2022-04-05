@@ -19,8 +19,8 @@ import androidx.navigation.NavController
 import ru.tech.papricoin.domain.model.Coin
 import ru.tech.papricoin.presentation.coin_list.components.CoinListItem
 import ru.tech.papricoin.presentation.favorite_coins.viewModel.FavoriteCoinsViewModel
-import ru.tech.papricoin.presentation.utils.Screen
-import ru.tech.papricoin.presentation.utils.UIState
+import ru.tech.papricoin.presentation.ui.utils.Screen
+import ru.tech.papricoin.presentation.ui.utils.UIState
 
 @ExperimentalMaterial3Api
 @Composable

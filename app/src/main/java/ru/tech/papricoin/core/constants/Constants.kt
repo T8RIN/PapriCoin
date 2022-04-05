@@ -1,4 +1,4 @@
-package ru.tech.papricoin.common.constants
+package ru.tech.papricoin.core.constants
 
 object Constants {
 

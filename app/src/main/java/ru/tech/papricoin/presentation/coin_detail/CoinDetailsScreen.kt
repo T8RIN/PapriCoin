@@ -34,7 +34,7 @@ import ru.tech.papricoin.presentation.coin_detail.components.Chart
 import ru.tech.papricoin.presentation.coin_detail.components.Tag
 import ru.tech.papricoin.presentation.coin_detail.components.TeamListItem
 import ru.tech.papricoin.presentation.coin_detail.viewModel.CoinDetailsViewModel
-import ru.tech.papricoin.presentation.utils.UIState
+import ru.tech.papricoin.presentation.ui.utils.UIState
 
 @ExperimentalMaterial3Api
 @Composable

@@ -1,4 +1,4 @@
-package ru.tech.papricoin.presentation.utils
+package ru.tech.papricoin.presentation.ui.utils
 
 sealed class Screen(val route: String) {
     object CoinListScreen : Screen(route = "coin_list")

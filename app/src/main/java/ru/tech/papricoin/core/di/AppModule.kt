@@ -1,4 +1,4 @@
-package ru.tech.papricoin.di
+package ru.tech.papricoin.core.di
 
 import android.content.Context
 import androidx.room.Room
@@ -10,7 +10,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import ru.tech.papricoin.common.constants.Constants.BASE_URL
+import ru.tech.papricoin.core.constants.Constants.BASE_URL
 import ru.tech.papricoin.data.local.room.Converters
 import ru.tech.papricoin.data.local.room.PapriCoinDatabase
 import ru.tech.papricoin.data.remote.api.PapriCoinApi

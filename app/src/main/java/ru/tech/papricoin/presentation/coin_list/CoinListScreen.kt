@@ -25,8 +25,8 @@ import ru.tech.papricoin.domain.model.Overview
 import ru.tech.papricoin.presentation.coin_list.components.CoinListItem
 import ru.tech.papricoin.presentation.coin_list.components.SearchBar
 import ru.tech.papricoin.presentation.coin_list.viewModel.CoinListViewModel
-import ru.tech.papricoin.presentation.utils.Screen
-import ru.tech.papricoin.presentation.utils.UIState
+import ru.tech.papricoin.presentation.ui.utils.Screen
+import ru.tech.papricoin.presentation.ui.utils.UIState
 
 @ExperimentalMaterial3Api
 @Composable

@@ -1,4 +1,4 @@
-package ru.tech.papricoin.presentation.utils
+package ru.tech.papricoin.presentation.ui.utils
 
 sealed class UIState<T> {
     class Empty<T>(var message: String? = null) : UIState<T>()

@@ -14,6 +14,7 @@ import ru.tech.papricoin.data.local.entity.*
         CoinCurrencyEntity::class,
         FavoriteCoinEntity::class
     ],
+    exportSchema = false,
     version = 1
 )
 @TypeConverters(Converters::class)

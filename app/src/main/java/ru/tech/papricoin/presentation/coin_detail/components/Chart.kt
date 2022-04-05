@@ -3,16 +3,15 @@ package ru.tech.papricoin.presentation.coin_detail.components
 import android.graphics.PointF
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -30,7 +29,7 @@ fun Chart(lineChartData: List<Double>, color: Color) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(start = 10.dp, end = 10.dp, bottom = 10.dp),
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(
@@ -38,6 +37,14 @@ fun Chart(lineChartData: List<Double>, color: Color) {
                 .padding(10.dp)
                 .wrapContentSize(align = Alignment.BottomStart)
         ) {
+            Text(
+                text = "* last year statistic",
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontSize = 7.sp,
+                textAlign = TextAlign.End,
+                modifier = Modifier.fillMaxWidth()
+            )
+
             Canvas(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -65,6 +72,7 @@ fun Chart(lineChartData: List<Double>, color: Color) {
                     )
                 }
             }
+
             Row(
                 verticalAlignment = Alignment.Bottom
             ) {

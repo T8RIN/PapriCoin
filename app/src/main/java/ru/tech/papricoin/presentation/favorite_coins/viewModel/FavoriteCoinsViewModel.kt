@@ -42,7 +42,7 @@ class FavoriteCoinsViewModel @Inject constructor(
                     _coinListState.value = UIState.Success(result.data ?: emptyList())
                 }
                 is Action.Empty -> {
-                    _coinListState.value = UIState.Empty(result.message)
+                    _coinListState.value = UIState.Empty(result.message ?: "Unexpected error")
                 }
                 is Action.Loading -> {
                     _coinListState.value = UIState.Loading()

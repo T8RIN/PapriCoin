@@ -1,5 +1,7 @@
 package ru.tech.papricoin.presentation.coin_detail.viewModel
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -32,6 +34,9 @@ class CoinDetailsViewModel @Inject constructor(
     private val removeFavoriteCoinUseCase: RemoveFavoriteCoinUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    @ExperimentalMaterial3Api
+    val scrollBehavior = mutableStateOf(TopAppBarDefaults.enterAlwaysScrollBehavior())
 
     private val _coinDetailState = mutableStateOf<UIState<CoinDetail?>>(UIState.Empty())
     val coinDetailState: State<UIState<CoinDetail?>> = _coinDetailState

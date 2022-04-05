@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.rounded.FavoriteBorder
+import androidx.compose.material.icons.twotone.Error
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -73,10 +74,12 @@ fun CoinListScreen(navController: NavController, viewModel: CoinListViewModel = 
                 is UIState.Empty<*> -> {
                     Column(
                         modifier = Modifier
-                            .align(Alignment.Center)
+                            .fillMaxSize()
                             .padding(10.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ) {
+                        Icon(Icons.TwoTone.Error, null, modifier = Modifier.fillMaxSize(0.3f))
                         Text(
                             text = "Something went wrong\n\n${data.message ?: ""}",
                             color = MaterialTheme.colorScheme.onBackground,

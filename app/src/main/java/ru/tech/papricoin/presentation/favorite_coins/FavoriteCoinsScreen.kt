@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.twotone.CloudOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -68,12 +69,15 @@ fun FavoriteCoinsScreen(
                 is UIState.Empty<*> -> {
                     Column(
                         modifier = Modifier
-                            .align(Alignment.Center)
+                            .fillMaxSize()
                             .padding(10.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ) {
+                        Icon(Icons.TwoTone.CloudOff, null, modifier = Modifier.fillMaxSize(0.3f))
+                        Spacer(Modifier.height(36.dp))
                         Text(
-                            text = "Something went wrong\n\n${data.message ?: ""}",
+                            text = data.message ?: "",
                             color = MaterialTheme.colorScheme.onBackground,
                             textAlign = TextAlign.Center
                         )
@@ -90,7 +94,7 @@ fun FavoriteCoinsScreen(
                         contentPadding = PaddingValues(
                             top = 10.dp,
                             bottom = WindowInsets.navigationBars.asPaddingValues()
-                                .calculateTopPadding() + 100.dp
+                                .calculateBottomPadding() + 100.dp
                         )
                     ) {
                         items(data.data.size) { index ->

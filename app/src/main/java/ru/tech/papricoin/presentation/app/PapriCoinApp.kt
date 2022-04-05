@@ -27,7 +27,7 @@ fun PapriCoinApp() {
                 CoinListScreen(navController)
             }
             composable(Screen.CoinDetailsScreen.route + "/{id}") {
-                CoinDetailsScreen()
+                CoinDetailsScreen(navController)
             }
             composable(Screen.FavoriteCoinsScreen.route) {
                 FavoriteCoinsScreen(navController)

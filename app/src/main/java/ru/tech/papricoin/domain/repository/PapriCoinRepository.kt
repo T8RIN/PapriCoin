@@ -21,4 +21,12 @@ interface PapriCoinRepository {
 
     fun getOverview(): Flow<Action<Overview>>
 
+    fun getFavoriteCoins(): Flow<Action<List<Coin>>>
+
+    suspend fun checkFavoriteCoin(id: String): Boolean
+
+    suspend fun insertFavoriteCoin(id: String)
+
+    suspend fun removeFavoriteCoin(id: String)
+
 }

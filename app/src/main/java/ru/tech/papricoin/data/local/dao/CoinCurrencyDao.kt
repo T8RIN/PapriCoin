@@ -15,4 +15,7 @@ interface CoinCurrencyDao {
     @Query("SELECT * FROM coincurrencyentity WHERE id = :id")
     suspend fun getCoinCurrency(id: String): CoinCurrencyEntity?
 
+    @Query("DELETE FROM coincurrencyentity")
+    suspend fun deleteCoins()
+
 }

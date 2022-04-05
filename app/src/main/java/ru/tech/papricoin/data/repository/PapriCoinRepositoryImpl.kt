@@ -2,11 +2,9 @@ package ru.tech.papricoin.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.tech.papricoin.data.local.dao.CoinCurrencyDao
-import ru.tech.papricoin.data.local.dao.CoinDao
-import ru.tech.papricoin.data.local.dao.CoinDetailDao
-import ru.tech.papricoin.data.local.dao.OverviewDao
+import ru.tech.papricoin.data.local.dao.*
 import ru.tech.papricoin.data.local.entity.CoinCurrencyEntity
+import ru.tech.papricoin.data.local.entity.FavoriteCoinEntity
 import ru.tech.papricoin.data.remote.api.PapriCoinApi
 import ru.tech.papricoin.data.remote.dto.*
 import ru.tech.papricoin.domain.model.Coin
@@ -22,7 +20,8 @@ class PapriCoinRepositoryImpl @Inject constructor(
     private val coinDao: CoinDao,
     private val overviewDao: OverviewDao,
     private val coinDetailDao: CoinDetailDao,
-    private val coinCurrencyDao: CoinCurrencyDao
+    private val coinCurrencyDao: CoinCurrencyDao,
+    private val favoriteCoinsDao: FavoriteCoinsDao
 ) : PapriCoinRepository {
 
     override fun getCoins(): Flow<Action<List<Coin>>> = flow {
@@ -101,4 +100,49 @@ class PapriCoinRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun getFavoriteCoins(): Flow<Action<List<Coin>>> = flow {
+
+        favoriteCoinsDao.getCoins().collect { list ->
+            emit(Action.Loading())
+
+            val coinIds = list.map { it.id }
+            val coinList: List<Coin> = coinIds.mapNotNull { id ->
+                val shadowCoin = try {
+                    api.getCoinById(id).coinDetail
+                } catch (e: Exception) {
+                    coinDetailDao.getCoinDetail(id)?.coinDetail
+                }
+
+                shadowCoin?.let {
+                    Coin(
+                        id = id,
+                        isActive = shadowCoin.isActive,
+                        isNew = false,
+                        name = shadowCoin.name,
+                        symbol = shadowCoin.symbol,
+                        rank = shadowCoin.rank,
+                        iconUrl = "https://static.coinpaprika.com/coin/$id/logo.png"
+                    )
+                }
+            }
+            if (coinList.isNotEmpty()) emit(Action.Success(coinList))
+            else emit(Action.Empty("Couldn't reach server, or your favorite coins are not cached, or they are not exist"))
+        }
+
+    }
+
+    override suspend fun checkFavoriteCoin(id: String): Boolean {
+        return favoriteCoinsDao.getFavoriteCoin(id)?.let { true } ?: false
+    }
+
+    override suspend fun insertFavoriteCoin(id: String) {
+        favoriteCoinsDao.insertCoin(FavoriteCoinEntity(id))
+    }
+
+    override suspend fun removeFavoriteCoin(id: String) {
+        favoriteCoinsDao.removeFavoriteCoin(FavoriteCoinEntity(id))
+    }
+
+
 }

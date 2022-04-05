@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -49,12 +50,17 @@ fun CoinListScreen(navController: NavController, viewModel: CoinListViewModel = 
                     modifier = Modifier.statusBarsPadding(),
                     colors = foregroundColors,
                     title = {
-                        Text("PapriCoin")
+                        Text("Coins")
                     },
                     scrollBehavior = scrollBehavior,
                     actions = {
                         IconButton(onClick = { viewModel.reload() }) {
                             Icon(Icons.Outlined.Refresh, null)
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.navigate(Screen.FavoriteCoinsScreen.route) }) {
+                            Icon(Icons.Rounded.FavoriteBorder, null)
                         }
                     }
                 )
@@ -89,7 +95,7 @@ fun CoinListScreen(navController: NavController, viewModel: CoinListViewModel = 
                         contentPadding = PaddingValues(
                             top = 10.dp,
                             bottom = WindowInsets.navigationBars.asPaddingValues()
-                                .calculateTopPadding() + 100.dp
+                                .calculateBottomPadding() + 100.dp
                         )
                     ) {
                         item {

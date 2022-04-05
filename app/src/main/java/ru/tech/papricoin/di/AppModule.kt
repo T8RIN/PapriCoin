@@ -40,13 +40,22 @@ object AppModule {
             db.coinDao,
             db.overviewDao,
             db.coinDetailDao,
-            db.coinCurrencyDao
+            db.coinCurrencyDao,
+            db.favoriteCoinsDao
         )
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext app: Context): PapriCoinDatabase = Room.databaseBuilder(
-        app, PapriCoinDatabase::class.java, "coin_database"
-    ).addTypeConverter(Converters(MoshiParser(Moshi.Builder().build()))).build()
+    fun provideDatabase(
+        @ApplicationContext applicationContext: Context,
+        converter: Converters
+    ): PapriCoinDatabase = Room.databaseBuilder(
+        applicationContext,
+        PapriCoinDatabase::class.java,
+        "coin_database"
+    ).addTypeConverter(converter).build()
+
+    @Provides
+    fun provideTypeConverter(): Converters = Converters(MoshiParser(Moshi.Builder().build()))
 
 }

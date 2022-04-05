@@ -8,9 +8,13 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import ru.tech.papricoin.common.constants.Constants.COIN_ID_PARAM
 import ru.tech.papricoin.domain.model.CoinCurrency
 import ru.tech.papricoin.domain.model.CoinDetail
+import ru.tech.papricoin.domain.use_case.favorite_coins.add_favorite_coin.AddFavoriteCoinUseCase
+import ru.tech.papricoin.domain.use_case.favorite_coins.check_favorite_coin.CheckFavoriteCoinUseCase
+import ru.tech.papricoin.domain.use_case.favorite_coins.remove_favorite_coin.RemoveFavoriteCoinUseCase
 import ru.tech.papricoin.domain.use_case.get_coin.GetCoinUseCase
 import ru.tech.papricoin.domain.use_case.get_historical_currency.GetHistoricalCurrencyUseCase
 import ru.tech.papricoin.presentation.utils.Action
@@ -23,6 +27,9 @@ import javax.inject.Inject
 class CoinDetailsViewModel @Inject constructor(
     private val getCoinUseCase: GetCoinUseCase,
     private val getHistoricalCurrencyUseCase: GetHistoricalCurrencyUseCase,
+    private val checkFavoriteCoinUseCase: CheckFavoriteCoinUseCase,
+    private val addFavoriteCoinUseCase: AddFavoriteCoinUseCase,
+    private val removeFavoriteCoinUseCase: RemoveFavoriteCoinUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -32,6 +39,9 @@ class CoinDetailsViewModel @Inject constructor(
     private val _currencyHistoryState = mutableStateOf<UIState<List<CoinCurrency>>>(UIState.Empty())
     val currencyHistoryState: State<UIState<List<CoinCurrency>>> = _currencyHistoryState
 
+    private val _isFavorite = mutableStateOf(false)
+    val isFavorite: State<Boolean> = _isFavorite
+
     private var id = ""
 
 
@@ -39,6 +49,10 @@ class CoinDetailsViewModel @Inject constructor(
         savedStateHandle.get<String>(COIN_ID_PARAM)?.let {
             id = it
             reload(id)
+
+            viewModelScope.launch {
+                _isFavorite.value = checkFavoriteCoinUseCase.invoke(id)
+            }
         }
     }
 
@@ -85,6 +99,15 @@ class CoinDetailsViewModel @Inject constructor(
             timestamp - month
         )
         getHistoricalCurrency(it, start, end)
+    }
+
+    fun processFavorites(id: String) {
+        viewModelScope.launch {
+            if (_isFavorite.value) removeFavoriteCoinUseCase(id)
+            else addFavoriteCoinUseCase(id)
+
+            _isFavorite.value = !_isFavorite.value
+        }
     }
 
 }

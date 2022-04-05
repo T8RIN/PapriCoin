@@ -15,4 +15,7 @@ interface OverviewDao {
     @Query("SELECT * FROM overviewentity")
     suspend fun getOverview(): OverviewEntity?
 
+    @Query("DELETE FROM overviewentity")
+    suspend fun deleteCoins()
+
 }

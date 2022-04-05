@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -73,7 +76,7 @@ fun CoinDetailsScreen(
                         contentPadding = PaddingValues(
                             top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
                             bottom = WindowInsets.navigationBars.asPaddingValues()
-                                .calculateTopPadding() + 100.dp
+                                .calculateBottomPadding() + 100.dp
                         )
                     ) {
                         item {
@@ -195,6 +198,19 @@ fun CoinDetailsScreen(
                             )
                             Divider(modifier = Modifier.padding(horizontal = 20.dp))
                         }
+                    }
+
+                    FloatingActionButton(
+                        modifier = Modifier
+                            .align(BottomEnd)
+                            .navigationBarsPadding()
+                            .padding(end = 16.dp, bottom = 16.dp),
+                        onClick = { viewModel.processFavorites(details.id) }
+                    ) {
+                        Icon(
+                            if (viewModel.isFavorite.value) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
+                            null
+                        )
                     }
                 }
 

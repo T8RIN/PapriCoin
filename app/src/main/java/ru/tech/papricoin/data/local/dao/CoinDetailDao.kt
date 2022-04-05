@@ -15,4 +15,7 @@ interface CoinDetailDao {
     @Query("SELECT * FROM coindetailentity WHERE id = :id")
     suspend fun getCoinDetail(id: String): CoinDetailEntity?
 
+    @Query("DELETE FROM coindetailentity")
+    suspend fun deleteCoins()
+
 }

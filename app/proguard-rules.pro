@@ -43,6 +43,10 @@
     @com.squareup.moshi.ToJson <methods>;
 }
 
--keepnames @kotlin.Metadata class com.myapp.packagename.model.**
+-keepnames @kotlin.Metadata class ru.tech.papricoin.data.remote.dto.**
 -keep class ru.tech.papricoin.data.remote.dto.** { *; }
 -keepclassmembers class ru.tech.papricoin.data.remote.dto.** { *; }
+
+-keepnames @kotlin.Metadata class ru.tech.papricoin.data.remote.response.**
+-keep class ru.tech.papricoin.data.remote.response.** { *; }
+-keepclassmembers class ru.tech.papricoin.data.remote.response.** { *; }

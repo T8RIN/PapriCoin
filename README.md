@@ -7,6 +7,11 @@
   <a href="https://github.com/t8rin"><img alt="Profile" src="https://img.shields.io/badge/Github-T8RIN-002200?logo=github&logoColor=white&style=for-the-badge"/></a> 
 </p>
 
+<p align="center">  
+PapriCoin demonstrates Jetpack Compose usage to build modern app based on Clean Architecture and newest Tech-Stack.</br>Repository also has local and remote data source, if you go offline app will switch on saved cache to work independently.
+</p>
+</br>
+
 ![image](https://user-images.githubusercontent.com/52178347/161815748-4fc93630-3414-480b-a33f-01fcdad27fc0.png)
 
 ## Download

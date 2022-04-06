@@ -12,7 +12,7 @@ PapriCoin demonstrates Jetpack Compose usage to build modern app based on Clean 
 </p>
 </br>
 
-![image](https://user-images.githubusercontent.com/52178347/161815748-4fc93630-3414-480b-a33f-01fcdad27fc0.png)
+![image](https://user-images.githubusercontent.com/52178347/161901845-08fbf347-dba9-4dea-be6e-b724e94c6c35.png)
 
 ## Download
 Go to the [Releases](https://github.com/t8rin/PapriCoin/releases) to download the latest APK.

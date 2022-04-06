@@ -8,10 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.graphics.ColorUtils
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -63,15 +68,45 @@ fun Chart(lineChartData: List<Double>, color: Color) {
                     }
                 }
 
+                val clipPath = Path().apply {
+                    lineTo(points.first().x, size.height)
+                    lineTo(points.first().x, points.last().y)
+                }
+
                 for (i in 0 until points.size - 1) {
                     drawLine(
                         start = Offset(points[i].x, points[i].y),
                         end = Offset(points[i + 1].x, points[i + 1].y),
                         color = color,
-                        strokeWidth = 2f
+                    )
+                    clipPath.lineTo(points[i].x, points[i].y)
+                }
+
+                clipPath.apply {
+                    lineTo(points.last().x, points.last().y)
+                    lineTo(points.last().x, size.height)
+                    lineTo(points.first().x, size.height)
+                }
+
+                clipPath(clipPath) {
+                    drawRect(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                Color(
+                                    ColorUtils.blendARGB(
+                                        color.toArgb(),
+                                        Color.Gray.toArgb(),
+                                        0.6f
+                                    )
+                                ),
+                                Color.Transparent
+                            )
+                        )
                     )
                 }
             }
+
+            Spacer(Modifier.height(20.dp))
 
             Row(
                 verticalAlignment = Alignment.Bottom

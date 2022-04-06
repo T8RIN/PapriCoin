@@ -15,5 +15,5 @@ data class CoinCurrencyDto(
 
 val CoinCurrencyDto.coinCurrency
     get() = CoinCurrency(
-        currency = (low + high) / 2
+        currency = open
     )

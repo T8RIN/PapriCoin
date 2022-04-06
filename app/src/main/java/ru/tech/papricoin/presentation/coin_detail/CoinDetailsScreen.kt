@@ -56,14 +56,17 @@ fun CoinDetailsScreen(
             )
 
             Surface(color = backgroundColor) {
-                MediumTopAppBar(
+                LargeTopAppBar(
                     modifier = Modifier.statusBarsPadding(),
                     colors = foregroundColors,
                     title = {
                         val st = viewModel.coinDetailState.value
                         if (st is UIState.Success<CoinDetail?>) {
                             st.data?.let { details ->
-                                Text("${details.rank}. ${details.name} (${details.symbol})")
+                                Text(
+                                    "${details.rank}. ${details.name} (${details.symbol})",
+                                    maxLines = 2
+                                )
                             }
                         }
                     },
@@ -168,7 +171,7 @@ fun CoinDetailsScreen(
                                         is UIState.Success -> {
                                             Chart(
                                                 lineChartData = hState.data.map { it.currency },
-                                                MaterialTheme.colorScheme.primary
+                                                color = MaterialTheme.colorScheme.primary
                                             )
                                         }
                                         is UIState.Loading -> {

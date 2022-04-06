@@ -12,7 +12,7 @@ PapriCoin demonstrates Jetpack Compose usage to build modern app based on Clean 
 </p>
 </br>
 
-![image](https://user-images.githubusercontent.com/52178347/161815748-4fc93630-3414-480b-a33f-01fcdad27fc0.png)
+![image](https://user-images.githubusercontent.com/52178347/161929672-890dedca-086a-49a4-8fa2-53ef8932a855.png)
 
 ## Download
 Go to the [Releases](https://github.com/t8rin/PapriCoin/releases) to download the latest APK.
@@ -29,13 +29,13 @@ Go to the [Releases](https://github.com/t8rin/PapriCoin/releases) to download th
 
 - [Accompanist](https://github.com/google/accompanist) to expand jetpack compose opportunities.
 
-- [Firebase](https://github.com/firebase/FirebaseUI-Android) for registering/signing in and storing data in the cloud.
-
 - [Hilt](https://dagger.dev/hilt/) for dependency injection.
 
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - Construct the REST API using abstractions.
 
 - [Moshi](https://github.com/square/moshi/) - A modern JSON library to serialization/deserialization.
+
+- [Coil](https://github.com/coil-kt/coil) - loading images.
 
 - Jetpack
   - Lifecycle - Observe Android lifecycles and handle UI states upon the lifecycle changes.
@@ -47,10 +47,6 @@ Go to the [Releases](https://github.com/t8rin/PapriCoin/releases) to download th
   - Clean Architecture (UI - ViewModel - Use Cases - Repository)
   - Repository Pattern
   - MVVVM
-
-- [Coil](https://github.com/coil-kt/coil) - loading images.
-
-- [Material-Components](https://github.com/material-components/material-components-android) - Material You components with dynamic colors.
 
 # License
 ```xml

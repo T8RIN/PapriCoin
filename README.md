@@ -46,7 +46,7 @@ Go to the [Releases](https://github.com/t8rin/PapriCoin/releases) to download th
 - Architecture
   - Clean Architecture (UI - ViewModel - Use Cases - Repository)
   - Repository Pattern
-  - MVVVM
+  - MVVM
 
 # License
 ```xml
